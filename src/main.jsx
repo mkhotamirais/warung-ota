@@ -19,7 +19,7 @@ import AdmUserDetail from "./pages/admin/users/AdmUserDetail.jsx";
 import AdmUsersUpdate from "./pages/admin/users/AdmUsersUpdate.jsx";
 import AdmCat from "./pages/admin/category/AdmCat.jsx";
 import ProtectedAdmin, { ProtectedUser } from "./pages/admin/ProtectedRole.jsx";
-// import AuthRedirect from "./pages/auth/AuthRedirect.jsx";
+import AuthRedirect from "./pages/auth/AuthRedirect.jsx";
 import AdmProductPost from "./pages/admin/product/AdmProductPost.jsx";
 import AdmProductDetail from "./pages/admin/product/AdmProductDetail.jsx";
 import AdmProductUpdate from "./pages/admin/product/AdmProductUpdate.jsx";
@@ -29,10 +29,10 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />} errorElement={<ErrorBoundary />}>
       <Route index element={<Home />} />
       <Route path="product" element={<Product />} />
-      {/* <Route element={<AuthRedirect />}> */}
-      <Route path="signin" element={<Signin />} />
-      <Route path="signup" element={<Signup />} />
-      {/* </Route> */}
+      <Route element={<AuthRedirect />}>
+        <Route path="signin" element={<Signin />} />
+        <Route path="signup" element={<Signup />} />
+      </Route>
       <Route element={<ProtectedUser />}>
         <Route path="user-profile" element={<Profile />} />
       </Route>

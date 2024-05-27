@@ -6,7 +6,7 @@ const AuthRedirect = () => {
 
   let content;
   if (!data || data === undefined) content = <Outlet />;
-  else content = <Navigate to={0} replace />;
+  else content = <Navigate to={"/"} replace />;
   return content;
 };
 

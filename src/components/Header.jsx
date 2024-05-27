@@ -19,6 +19,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, ScrollRestoration, useNavigate } from "react-router-dom";
 import { useGetMeQuery, useSignoutMutation } from "../app/api/authApiSlice";
 import toast from "react-hot-toast";
+import { PiSpinner } from "react-icons/pi";
 
 const navMenus = [
   { href: "", text: "home" },
@@ -118,7 +119,7 @@ const UserBtn = () => <AuthBubble icon={<FaUser />} menus={authUserMenus} />;
 const AdminBtn = () => <AuthBubble icon={<FaUserShield />} menus={authAdminMenus} />;
 const LogoutBtn = () => {
   const navigate = useNavigate();
-  const [signout] = useSignoutMutation();
+  const [signout, { isLoading }] = useSignoutMutation();
   const handleClick = (e) => {
     e.preventDefault();
     signout()
@@ -135,9 +136,15 @@ const LogoutBtn = () => {
     <button
       onClick={handleClick}
       // href="/signin"
-      className="flex gap-2 items-center border rounded-lg p-1 px-2 mt-2 bg-slate-500 text-white hover:opacity-70"
+      className="flex gap-2 w-full items-center border rounded-lg p-1 px-2 mt-2 bg-slate-500 text-white hover:opacity-70"
     >
-      <FaRightToBracket /> Logout
+      {isLoading ? (
+        <PiSpinner className="animate-spin" />
+      ) : (
+        <>
+          <FaRightToBracket /> Logout
+        </>
+      )}
     </button>
   );
 };
