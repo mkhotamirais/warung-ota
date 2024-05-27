@@ -16,7 +16,7 @@ import {
 } from "react-icons/fa6";
 import { removeOpenAuth, removeOpenNav, toggleDark, toggleOpenAuth, toggleOpenNav } from "../app/features/basicSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, ScrollRestoration } from "react-router-dom";
+import { NavLink, ScrollRestoration, useNavigate } from "react-router-dom";
 import { useGetMeQuery, useSignoutMutation } from "../app/api/authApiSlice";
 import toast from "react-hot-toast";
 
@@ -117,25 +117,28 @@ const LoginBtn = () => <AuthBubble icon={<FaRightToBracket />} menus={authGuestM
 const UserBtn = () => <AuthBubble icon={<FaUser />} menus={authUserMenus} />;
 const AdminBtn = () => <AuthBubble icon={<FaUserShield />} menus={authAdminMenus} />;
 const LogoutBtn = () => {
+  const navigate = useNavigate();
   const [signout] = useSignoutMutation();
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     signout()
       .unwrap()
       .then((res) => {
         toast.success(res?.message);
+        navigate("/signin");
       })
       .catch((err) => {
         toast.error(err?.data?.message);
       });
   };
   return (
-    <a
+    <button
       onClick={handleClick}
-      href="/signin"
+      // href="/signin"
       className="flex gap-2 items-center border rounded-lg p-1 px-2 mt-2 bg-slate-500 text-white hover:opacity-70"
     >
       <FaRightToBracket /> Logout
-    </a>
+    </button>
   );
 };
 // nav
