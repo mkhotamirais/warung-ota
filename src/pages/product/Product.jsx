@@ -4,10 +4,21 @@ import { useSelector } from "react-redux";
 import ProducCard from "./ProducCard";
 import ProductTable from "./ProductTable";
 import { setProductView } from "../../app/features/basicSlice";
-import { QueryCategory, QuerySearch, QueryTag } from "../admin/product/ProductQuery";
+import {
+  QueryCategory,
+  QuerySearch,
+  QuerySortCategory,
+  QuerySortCreated,
+  QuerySortName,
+  QuerySortPrice,
+  QuerySortUpdated,
+  QueryTag,
+  ResetQuery,
+} from "../admin/product/ProductQuery";
 
 const Product = () => {
-  const { data, isLoading, isError, isSuccess, error } = useGetProductsQuery();
+  const { queryResult } = useSelector((state) => state.product);
+  const { data, isLoading, isError, isSuccess, error } = useGetProductsQuery(queryResult);
   const { productView } = useSelector((state) => state.basic);
 
   let content;
@@ -43,13 +54,23 @@ const Product = () => {
         admin product
         <ViewOption view={productView} setView={setProductView} />
       </Title>
-      <div className="flex gap-1 w-full justify-between">
+      <div className="flex justify-between gap-2">
         <QuerySearch />
+        <ResetQuery />
+      </div>
+      <div className="flex gap-1 items-center my-1">
+        <div className="min-w-max">Sort By:</div>
+        <QuerySortName />
+        <QuerySortPrice />
+        <QuerySortCategory />
+        <QuerySortCreated />
+        <QuerySortUpdated />
+      </div>
+      <div className="flex gap-1 items-center my-1">
+        <div className="min-wmax">Filter By:</div>
         <QueryCategory />
       </div>
-      <div>
-        <QueryTag />
-      </div>
+      <QueryTag />
       {content}
     </div>
   );

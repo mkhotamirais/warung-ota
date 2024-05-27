@@ -6,7 +6,17 @@ import AdmProductTable from "./AdmProductTable";
 import { Link } from "react-router-dom";
 import { FaCirclePlus } from "react-icons/fa6";
 import { setAdmProductView } from "../../../app/features/basicSlice";
-import { QueryCategory, QuerySearch, QuerySortName, QuerySortPrice, QueryTag, ResetQuery } from "./ProductQuery";
+import {
+  QueryCategory,
+  QuerySearch,
+  QuerySortCategory,
+  QuerySortCreated,
+  QuerySortName,
+  QuerySortPrice,
+  QuerySortUpdated,
+  QueryTag,
+  ResetQuery,
+} from "./ProductQuery";
 
 const AdmProduct = () => {
   const { queryResult } = useSelector((state) => state.product);
@@ -57,10 +67,13 @@ const AdmProduct = () => {
         <QuerySearch />
         <ResetQuery />
       </div>
-      <div className="flex gap-1 items-center my-1">
+      <div className="flex gap-1 items-center my-1 flex-wrap">
         <div className="min-w-max">Sort By:</div>
         <QuerySortName />
         <QuerySortPrice />
+        <QuerySortCategory />
+        <QuerySortCreated />
+        <QuerySortUpdated />
       </div>
       <div className="flex gap-1 items-center my-1">
         <div className="min-wmax">Filter By:</div>

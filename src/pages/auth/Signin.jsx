@@ -11,7 +11,7 @@ const Signin = () => {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const navigate = useNavigate();
-  const [login] = useSigninMutation();
+  const [login, { isLoading }] = useSigninMutation();
   const handleSubmit = (e) => {
     e.preventDefault();
     login(data)
@@ -26,7 +26,7 @@ const Signin = () => {
   };
 
   return (
-    <AuthLayout onSubmit={handleSubmit} title="login">
+    <AuthLayout onSubmit={handleSubmit} title="login" isLoading={isLoading}>
       <Label id="username">username</Label>
       <Input id="username" autoFocus={true} placeholder={"username"} onChange={handleChange} />
       <Label id="password">password</Label>

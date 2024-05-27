@@ -11,7 +11,7 @@ const Signup = () => {
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const navigate = useNavigate();
-  const [register] = useSignupMutation();
+  const [register, { isLoading }] = useSignupMutation();
   const handleSubmit = (e) => {
     e.preventDefault();
     register(data)
@@ -26,7 +26,7 @@ const Signup = () => {
   };
 
   return (
-    <AuthLayout onSubmit={handleSubmit} title="register">
+    <AuthLayout onSubmit={handleSubmit} title="register" isLoading={isLoading}>
       <Label id="username">username</Label>
       <Input id="username" autoFocus={true} placeholder={"username"} onChange={handleChange} />
       <Label id="email">email</Label>

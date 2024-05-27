@@ -49,7 +49,7 @@ const basicSlice = createSlice({
     },
     setProductView(state, action) {
       state.productView = action.payload;
-      localStorage.setItem("admProductView", JSON.stringify(state.productView));
+      localStorage.setItem("productView", JSON.stringify(state.productView));
     },
   },
 });

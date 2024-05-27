@@ -24,7 +24,7 @@ export const Input = ({ type = "text", id, value, onChange, placeholder, autoFoc
 };
 Input.propTypes;
 
-export const Select = ({ children, id, value, onChange, autoFocus, className }) => {
+export const Select = ({ children, id, value, onChange, autoFocus, className = "mb-2" }) => {
   const { dark } = useSelector((state) => state.basic);
   return (
     <select
@@ -33,9 +33,7 @@ export const Select = ({ children, id, value, onChange, autoFocus, className }) 
       value={value}
       onChange={onChange}
       autoFocus={autoFocus}
-      className={`${className} ${
-        dark ? "bg-slate-800" : "bg-white"
-      } border rounded p-1 focus:outline-cyan-500 block mb-2 w-full`}
+      className={`${className} ${dark ? "bg-slate-800" : "bg-white"} border rounded p-1 focus:outline-cyan-500 block w-full`}
     >
       {children}
     </select>

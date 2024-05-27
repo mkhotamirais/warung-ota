@@ -1,28 +1,46 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  q: "",
+  filterCategory: "",
+  sortName: "",
+  sortPrice: "",
+  sortCategory: "",
+  sortCreated: "",
+  sortUpdated: "",
+  query: {},
+  queryString: "",
+  queryTag: [],
+  queryTagString: "",
+  querySort: [],
+  querySortString: "",
+  queryResult: "",
+};
+
 const productSlice = createSlice({
   name: "product",
-  initialState: {
-    q: "",
-    category: "",
-    sortName: "",
-    queryResult: "",
-    query: {},
-    queryTag: [],
-    queryTagString: "",
-    querySort: [],
-    querySortString: "",
-    queryString: "",
-  },
+  initialState,
   reducers: {
     setQ(state, action) {
       state.q = action.payload;
     },
-    setCategory(state, action) {
-      state.category = action.payload;
+    setFilterCategory(state, action) {
+      state.filterCategory = action.payload;
     },
     setSortName(state, action) {
       state.sortName = action.payload;
+    },
+    setSortPrice(state, action) {
+      state.sortPrice = action.payload;
+    },
+    setSortCategory(state, action) {
+      state.sortCategory = action.payload;
+    },
+    setSortCreated(state, action) {
+      state.sortCreated = action.payload;
+    },
+    setSortUpdated(state, action) {
+      state.sortUpdated = action.payload;
     },
     setQuery(state, action) {
       state.query = { ...state.query, ...action.payload };
@@ -48,17 +66,24 @@ const productSlice = createSlice({
     setQueryResult(state) {
       state.queryResult = state.queryString + state.queryTagString;
     },
-    resetQuery(state) {
-      state.q = "";
-      state.category = "";
-      state.queryResult = "";
-      state.query = {};
-      state.queryTag = [];
-      state.queryTagString = "";
-      state.queryString = "";
+    resetQuery() {
+      return initialState;
     },
   },
 });
 
-export const { setQ, setCategory, setQuery, setQueryTag, setQueryResult, resetQuery, setQuerySort } = productSlice.actions;
+export const {
+  setQ,
+  setFilterCategory,
+  setSortName,
+  setSortPrice,
+  setSortCategory,
+  setSortCreated,
+  setSortUpdated,
+  setQuery,
+  setQueryTag,
+  setQueryResult,
+  resetQuery,
+  setQuerySort,
+} = productSlice.actions;
 export default productSlice.reducer;

@@ -4,8 +4,10 @@ import { Err, Loading, Prev, Title } from "../../components/Components";
 import toast from "react-hot-toast";
 import { PiSpinner } from "react-icons/pi";
 import ProfileModalDel from "./ProfileModalDel";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
+  const { dark } = useSelector((state) => state.basic);
   const { data, isLoading, isError, isSuccess, error } = useGetMeQuery();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -70,7 +72,7 @@ const Profile = () => {
                       autoFocus
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
-                      className="focus:outline-none"
+                      className="focus:outline-none bg-inherit"
                     />
                   ) : (
                     <div>{data?.username}</div>
@@ -85,7 +87,7 @@ const Profile = () => {
                       type="text"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="focus:outline-none"
+                      className="focus:outline-none bg-inherit"
                     />
                   ) : (
                     <div>{data?.email}</div>
@@ -110,14 +112,14 @@ const Profile = () => {
                       value={password}
                       placeholder="password"
                       onChange={(e) => setPassword(e.target.value)}
-                      className="block w-full mb-1 border-b focus:outline-none"
+                      className="block w-full mb-1 border-b focus:outline-none bg-inherit"
                     />
                     <input
                       type="password"
                       placeholder="confirm password"
                       value={confPassword}
                       onChange={(e) => setConfPassword(e.target.value)}
-                      className="block w-full mb-1 border-b focus:outline-none"
+                      className="block w-full mb-1 border-b focus:outline-none bg-inherit"
                     />
                   </td>
                 </tr>
@@ -131,7 +133,7 @@ const Profile = () => {
                       id="role"
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
-                      className="focus:outline-none"
+                      className={`focus:outline-none ${dark ? "bg-slate-800" : "bg-white"}`}
                     >
                       <option value="">-role</option>
                       <option value="admin">Admin</option>
