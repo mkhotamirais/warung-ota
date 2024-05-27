@@ -120,8 +120,7 @@ const AdminBtn = () => <AuthBubble icon={<FaUserShield />} menus={authAdminMenus
 const LogoutBtn = () => {
   const navigate = useNavigate();
   const [signout, { isLoading }] = useSignoutMutation();
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleClick = () => {
     signout()
       .unwrap()
       .then((res) => {
@@ -136,7 +135,7 @@ const LogoutBtn = () => {
     <button
       onClick={handleClick}
       // href="/signin"
-      className="flex gap-2 w-full items-center border rounded-lg p-1 px-2 mt-2 bg-slate-500 text-white hover:opacity-70"
+      className="flex gap-2 w-full items-center justify-center border rounded-lg p-1 px-2 mt-2 bg-slate-500 text-white hover:opacity-70"
     >
       {isLoading ? (
         <PiSpinner className="animate-spin" />
