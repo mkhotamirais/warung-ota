@@ -58,7 +58,7 @@ const Product = () => {
         <QuerySearch />
         <ResetQuery />
       </div>
-      <div className="flex gap-1 items-center my-1">
+      <div className="flex gap-1 items-center my-1 flex-wrap">
         <div className="min-w-max">Sort By:</div>
         <QuerySortName />
         <QuerySortPrice />
@@ -66,7 +66,7 @@ const Product = () => {
         <QuerySortCreated />
         <QuerySortUpdated />
       </div>
-      <div className="flex gap-1 items-center my-1">
+      <div className="flex gap-1 items-center my-1 flex-wrap">
         <div className="min-wmax">Filter By:</div>
         <QueryCategory />
       </div>
