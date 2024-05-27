@@ -118,14 +118,13 @@ const LoginBtn = () => <AuthBubble icon={<FaRightToBracket />} menus={authGuestM
 const UserBtn = () => <AuthBubble icon={<FaUser />} menus={authUserMenus} />;
 const AdminBtn = () => <AuthBubble icon={<FaUserShield />} menus={authAdminMenus} />;
 const LogoutBtn = () => {
-  const navigate = useNavigate();
   const [signout, { isLoading }] = useSignoutMutation();
   const handleClick = () => {
     signout()
       .unwrap()
       .then((res) => {
         toast.success(res?.message);
-        navigate("/signin");
+        window.localStorage.href = "/signin";
       })
       .catch((err) => {
         toast.error(err?.data?.message);
@@ -134,7 +133,6 @@ const LogoutBtn = () => {
   return (
     <button
       onClick={handleClick}
-      // href="/signin"
       className="flex gap-2 w-full items-center justify-center border rounded-lg p-1 px-2 mt-2 bg-slate-500 text-white hover:opacity-70"
     >
       {isLoading ? (
