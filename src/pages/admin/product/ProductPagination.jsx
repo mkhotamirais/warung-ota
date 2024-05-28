@@ -6,7 +6,7 @@ const ProductPagination = ({ data }) => {
   const { currentPage } = useSelector((state) => state.product);
   const dispatch = useDispatch();
   // const [currentPage, dispatch(setCurrentPage] = useState(1);
-  let limit = 100;
+  let limit = 10;
   let skip = currentPage * limit - limit;
   const totalPage = Math.ceil(data?.count / limit);
   const pageNumbers = Array.from({ length: totalPage }, (v, i) => i + 1);
