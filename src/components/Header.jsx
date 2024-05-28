@@ -16,7 +16,7 @@ import {
 } from "react-icons/fa6";
 import { removeOpenAuth, removeOpenNav, toggleDark, toggleOpenAuth, toggleOpenNav } from "../app/features/basicSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, ScrollRestoration, useNavigate } from "react-router-dom";
+import { NavLink, ScrollRestoration } from "react-router-dom";
 import { useGetMeQuery, useSignoutMutation } from "../app/api/authApiSlice";
 import toast from "react-hot-toast";
 import { PiSpinner } from "react-icons/pi";
@@ -124,7 +124,7 @@ const LogoutBtn = () => {
       .unwrap()
       .then((res) => {
         toast.success(res?.message);
-        window.localStorage.href = "/signin";
+        window.location.href = "/signin";
       })
       .catch((err) => {
         toast.error(err?.data?.message);
@@ -133,10 +133,12 @@ const LogoutBtn = () => {
   return (
     <button
       onClick={handleClick}
-      className="flex gap-2 w-full items-center justify-center border rounded-lg p-1 px-2 mt-2 bg-slate-500 text-white hover:opacity-70"
+      className="flex gap-2 text-sm w-full items-center justify-center border rounded-lg p-2 px-2 mt-2 bg-slate-500 text-white hover:opacity-70"
     >
       {isLoading ? (
-        <PiSpinner className="animate-spin" />
+        <div className="text-xl">
+          <PiSpinner className="animate-spin" />
+        </div>
       ) : (
         <>
           <FaRightToBracket /> Logout

@@ -23,7 +23,7 @@ const AuthLayout = ({ children, onSubmit, title = "login", isLoading }) => {
             className="bg-cyan-500 text-white p-1 w-20 rounded-lg hover:opacity-70 flex items-center justify-center"
           >
             {isLoading ? (
-              <div className="text-xl">
+              <div className="text-2xl">
                 <PiSpinner className="animate-spin" />
               </div>
             ) : (
