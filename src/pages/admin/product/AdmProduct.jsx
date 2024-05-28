@@ -17,12 +17,13 @@ import {
   QueryTag,
   ResetQuery,
 } from "./ProductQuery";
+import ProductPagination from "./ProductPagination";
 
 const AdmProduct = () => {
   const { queryResult } = useSelector((state) => state.product);
-  const { data, isLoading, isError, isSuccess, error } = useGetProductsQuery(queryResult);
+  const { data: products, isLoading, isError, isSuccess, error } = useGetProductsQuery(queryResult);
   const { admProductView } = useSelector((state) => state.basic);
-
+  const data = products?.data;
   let content;
   if (isLoading) content = <Loading />;
   else if (isError) content = <Err>{error}</Err>;
@@ -68,7 +69,7 @@ const AdmProduct = () => {
         <ResetQuery />
       </div>
       <div className="flex gap-1 items-center my-1 flex-wrap">
-        <div className="min-w-max">Sort By:</div>
+        <div className="min-w-max">Sort:</div>
         <QuerySortName />
         <QuerySortPrice />
         <QuerySortCategory />
@@ -76,10 +77,11 @@ const AdmProduct = () => {
         <QuerySortUpdated />
       </div>
       <div className="flex gap-1 items-center my-1">
-        <div className="min-wmax">Filter By:</div>
+        <div className="min-wmax">Filter:</div>
         <QueryCategory />
       </div>
       <QueryTag />
+      <ProductPagination data={products} />
       {content}
     </div>
   );

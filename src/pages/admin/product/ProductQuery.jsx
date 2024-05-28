@@ -105,7 +105,7 @@ export const QueryCategory = () => {
 
   return (
     <Select className={"w-max mb-0"} value={filterCategory} onChange={handleChange}>
-      <option value="">-category</option>
+      <option value="">category</option>
       {data?.map((item) => (
         <option key={item?._id} value={item?._id}>
           {item?.name}
@@ -132,7 +132,7 @@ export const QuerySortName = () => {
 
   return (
     <Select className={"w-max mb-0"} value={sortName} id="name" onChange={handleChange}>
-      <option value="">-name</option>
+      <option value="">name</option>
       <option value="name">a-z</option>
       <option value="-name">z-a</option>
     </Select>
@@ -156,9 +156,9 @@ export const QuerySortPrice = () => {
 
   return (
     <Select className={"w-max mb-0"} value={sortPrice} id="price" onChange={handleChange}>
-      <option value="">-price</option>
-      <option value="price">cheapest</option>
-      <option value="-price">most expensive</option>
+      <option value="">price</option>
+      <option value="price">cheap</option>
+      <option value="-price">expensive</option>
     </Select>
   );
 };
@@ -180,7 +180,7 @@ export const QuerySortCategory = () => {
 
   return (
     <Select className={"w-max mb-0"} value={sortCategory} id="category" onChange={handleChange}>
-      <option value="">-category</option>
+      <option value="">category</option>
       <option value="category">a-z</option>
       <option value="-category">z-a</option>
     </Select>
@@ -204,7 +204,7 @@ export const QuerySortCreated = () => {
 
   return (
     <Select className={"w-max mb-0"} value={sortCreated} id="createdAt" onChange={handleChange}>
-      <option value="">-created</option>
+      <option value="">created</option>
       <option value="category">latest</option>
       <option value="-category">oldest</option>
     </Select>
@@ -228,7 +228,7 @@ export const QuerySortUpdated = () => {
 
   return (
     <Select className={"w-max mb-0"} value={sortUpdated} id="updatedAt" onChange={handleChange}>
-      <option value="">-updated</option>
+      <option value="">updated</option>
       <option value="category">latest</option>
       <option value="-category">oldest</option>
     </Select>

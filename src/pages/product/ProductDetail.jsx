@@ -1,12 +1,10 @@
 import { useParams } from "react-router-dom";
-import { Badge, Err, Loading, Prev, Title } from "../../../components/Components";
-import moment from "moment";
-import { useGetProductByIdQuery } from "../../../app/api/productApiSlice";
+import { Badge, Err, Loading, Prev, Title } from "../../components/Components";
+import { useGetProductByIdQuery } from "../../app/api/productApiSlice";
 
-const AdmProductDetail = () => {
+const ProductDetail = () => {
   const { id } = useParams();
   const { data, isLoading, isError, isSuccess, error } = useGetProductByIdQuery(id);
-  console.log(data);
   let content;
   if (isLoading) content = <Loading />;
   else if (isError) content = <Err>{error}</Err>;
@@ -18,9 +16,6 @@ const AdmProductDetail = () => {
           Detail User <i>{data?.name}</i>
         </Title>
         <div className="border rounded-lg p-3 shadow flex flex-col gap-2">
-          <div>
-            <b>ID</b> : {data?._id}
-          </div>
           <div className="capitalize">
             <b>name</b> : {data?.name}
           </div>
@@ -28,10 +23,10 @@ const AdmProductDetail = () => {
             <b>price</b> : Rp{data?.price?.toLocaleString("id-ID")}
           </div>
           <div>
-            <b>description</b> : {data?.desc}
+            <b>category</b> : {data?.category?.name}
           </div>
           <div>
-            <b>by</b> : {data?.user?.username}
+            <b>description</b> : {data?.desc}
           </div>
           <div className="flex gap-1 items-center flex-wrap">
             <div>
@@ -41,10 +36,6 @@ const AdmProductDetail = () => {
               <Badge key={item?._id}>{item?.name}</Badge>
             ))}
           </div>
-          <div className="text-sm">
-            <div>Created {moment(data?.createdAt).fromNow()}</div>
-            <div>Updated {moment(data?.updatedAt).fromNow()}</div>
-          </div>
         </div>
       </div>
     );
@@ -52,4 +43,4 @@ const AdmProductDetail = () => {
   return content;
 };
 
-export default AdmProductDetail;
+export default ProductDetail;

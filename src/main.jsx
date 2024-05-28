@@ -23,12 +23,16 @@ import AuthRedirect from "./pages/auth/AuthRedirect.jsx";
 import AdmProductPost from "./pages/admin/product/AdmProductPost.jsx";
 import AdmProductDetail from "./pages/admin/product/AdmProductDetail.jsx";
 import AdmProductUpdate from "./pages/admin/product/AdmProductUpdate.jsx";
+import ProductDetail from "./pages/product/ProductDetail.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />} errorElement={<ErrorBoundary />}>
       <Route index element={<Home />} />
-      <Route path="product" element={<Product />} />
+      <Route path="product">
+        <Route index element={<Product />} />
+        <Route path="detail/:id" element={<ProductDetail />} />
+      </Route>
       <Route element={<AuthRedirect />}>
         <Route path="signin" element={<Signin />} />
         <Route path="signup" element={<Signup />} />

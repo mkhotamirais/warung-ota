@@ -8,18 +8,18 @@ import {
   QueryCategory,
   QuerySearch,
   QuerySortCategory,
-  QuerySortCreated,
   QuerySortName,
   QuerySortPrice,
-  QuerySortUpdated,
   QueryTag,
   ResetQuery,
 } from "../admin/product/ProductQuery";
+import ProductPagination from "../admin/product/ProductPagination";
 
 const Product = () => {
   const { queryResult } = useSelector((state) => state.product);
-  const { data, isLoading, isError, isSuccess, error } = useGetProductsQuery(queryResult);
+  const { data: products, isLoading, isError, isSuccess, error } = useGetProductsQuery(queryResult);
   const { productView } = useSelector((state) => state.basic);
+  const data = products?.data;
 
   let content;
   if (isLoading) content = <Loading />;
@@ -38,8 +38,10 @@ const Product = () => {
                 <th>no</th>
                 <th>name</th>
                 <th>price</th>
-                <th className="hidden md:table-cell">created</th>
-                <th className="hidden lg:table-cell">updated</th>
+                <th className="hidden sm:table-cell">description</th>
+                <th className="hidden md:table-cell">category</th>
+                <th className="hidden lg:table-cell">tags</th>
+                <th>action</th>
               </tr>
             </thead>
             <tbody>{renderedTable}</tbody>
@@ -51,7 +53,7 @@ const Product = () => {
   return (
     <div>
       <Title>
-        admin product
+        product
         <ViewOption view={productView} setView={setProductView} />
       </Title>
       <div className="flex justify-between gap-2">
@@ -59,18 +61,17 @@ const Product = () => {
         <ResetQuery />
       </div>
       <div className="flex gap-1 items-center my-1 flex-wrap">
-        <div className="min-w-max">Sort By:</div>
+        <div className="min-w-max">Sort:</div>
         <QuerySortName />
         <QuerySortPrice />
         <QuerySortCategory />
-        <QuerySortCreated />
-        <QuerySortUpdated />
       </div>
       <div className="flex gap-1 items-center my-1 flex-wrap">
-        <div className="min-wmax">Filter By:</div>
+        <div className="min-wmax">Filter:</div>
         <QueryCategory />
       </div>
       <QueryTag />
+      <ProductPagination data={products} />
       {content}
     </div>
   );

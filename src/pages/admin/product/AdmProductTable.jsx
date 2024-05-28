@@ -4,6 +4,7 @@ import AdmProductModalDel from "./AdmProductModalDel";
 
 const AdmProductTable = ({ item, i }) => {
   const [idModalDel, setIdModalDel] = useState(null);
+  console.log(item?.tag);
 
   return (
     <tr className="*:border *:px-1 text-sm">
@@ -14,11 +15,9 @@ const AdmProductTable = ({ item, i }) => {
       <td className="hidden sm:table-cell">{item?.user?.username}</td>
       <td className="hidden md:table-cell">{item?.category?.name}</td>
       <td className="hidden lg:table-cell">
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap gap-1">
           {item?.tag?.map((itm) => (
-            <Badge className={"mr-1"} key={itm?._id}>
-              {itm?.name}
-            </Badge>
+            <Badge key={itm?._id}>{itm?.name}</Badge>
           ))}
         </div>
       </td>
