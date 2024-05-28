@@ -15,6 +15,7 @@ const initialState = {
   querySort: [],
   querySortString: "",
   queryResult: "",
+  currentPage: 1,
 };
 
 const productSlice = createSlice({
@@ -56,18 +57,24 @@ const productSlice = createSlice({
       else state.queryTagString = "?tag=" + result;
     },
     setQuerySort(state, action) {
+      console.log(action.payload);
       state.querySort = { ...state.querySort, ...action.payload };
+      console.log(Object.values(state.querySort));
       let result = Object.values(state.querySort)
         .filter((item) => item !== "")
         .join(" ");
       if (!result || result === "") result = "name";
       state.querySortString = result;
+      console.log(result);
     },
     setQueryResult(state) {
       state.queryResult = state.queryString + state.queryTagString;
     },
     resetQuery() {
       return initialState;
+    },
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
     },
   },
 });
@@ -85,5 +92,6 @@ export const {
   setQueryResult,
   resetQuery,
   setQuerySort,
+  setCurrentPage,
 } = productSlice.actions;
 export default productSlice.reducer;

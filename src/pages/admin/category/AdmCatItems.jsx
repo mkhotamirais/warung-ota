@@ -49,7 +49,7 @@ const AdmCatItems = ({ item }) => {
           }}
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="focus:outline-none w-full bg-inherit capitalize"
+          className="focus:outline-none w-full bg-inherit"
         />
       ) : (
         <div onClick={handleSetEdit} className="w-full hover:cursor-text capitalize">

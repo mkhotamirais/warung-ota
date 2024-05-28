@@ -4,7 +4,6 @@ import AdmProductModalDel from "./AdmProductModalDel";
 
 const AdmProductTable = ({ item, i }) => {
   const [idModalDel, setIdModalDel] = useState(null);
-  console.log(item?.tag);
 
   return (
     <tr className="*:border *:px-1 text-sm">

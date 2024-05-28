@@ -6,6 +6,7 @@ import { useGetCategoriesQuery } from "../../../app/api/categoryApiSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
   resetQuery,
+  setCurrentPage,
   setFilterCategory,
   setQ,
   setQuery,
@@ -35,7 +36,8 @@ export const QuerySearch = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(setQuery({ q }));
+    dispatch(setQuery({ q, limit: 10, skip: 0 }));
+    dispatch(setCurrentPage(1));
     dispatch(setQueryResult());
   };
 
@@ -99,7 +101,8 @@ export const QueryCategory = () => {
   };
 
   useEffect(() => {
-    dispatch(setQuery({ category: filterCategory }));
+    dispatch(setQuery({ category: filterCategory, limit: 10 }));
+    dispatch(setCurrentPage(1));
     dispatch(setQueryResult());
   }, [dispatch, filterCategory]);
 

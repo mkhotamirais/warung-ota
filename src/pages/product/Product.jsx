@@ -20,7 +20,6 @@ const Product = () => {
   const { data: products, isLoading, isError, isSuccess, error } = useGetProductsQuery(queryResult);
   const { productView } = useSelector((state) => state.basic);
   const data = products?.data;
-
   let content;
   if (isLoading) content = <Loading />;
   else if (isError) content = <Err>{error}</Err>;
@@ -48,7 +47,7 @@ const Product = () => {
           </table>
         );
       }
-    }
+    } else content = <Err>no content</Err>;
   }
   return (
     <div>

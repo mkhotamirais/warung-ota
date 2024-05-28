@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { setQuery, setQueryResult } from "../../../app/features/productSlice";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentPage, setQuery, setQueryResult } from "../../../app/features/productSlice";
 
 const ProductPagination = ({ data }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const { currentPage } = useSelector((state) => state.product);
   const dispatch = useDispatch();
-  let limit = 5;
+  // const [currentPage, dispatch(setCurrentPage] = useState(1);
+  let limit = 100;
   let skip = currentPage * limit - limit;
   const totalPage = Math.ceil(data?.count / limit);
   const pageNumbers = Array.from({ length: totalPage }, (v, i) => i + 1);
 
-  const handleCurrentPage = (num) => setCurrentPage(num);
-  const nextPage = () => (currentPage !== totalPage ? setCurrentPage(currentPage + 1) : null);
-  const prevPage = () => (currentPage !== 1 ? setCurrentPage(currentPage - 1) : null);
+  const handleCurrentPage = (num) => dispatch(setCurrentPage(num));
+  const nextPage = () => (currentPage !== totalPage ? dispatch(setCurrentPage(currentPage + 1)) : null);
+  const prevPage = () => (currentPage !== 1 ? dispatch(setCurrentPage(currentPage - 1)) : null);
 
   useEffect(() => {
     dispatch(setQuery({ skip, limit }));
