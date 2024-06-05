@@ -215,7 +215,7 @@ const Logo = () => {
 
 const SourceCode = () => {
   return (
-    <a href="" className="text-xl">
+    <a href="https://github.com/mkhotamirais/warung-ota" className="text-xl">
       <FaGithub />
     </a>
   );
